@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String
+  role      Role
+  student   Student?
+  teacher   Teacher?
+  mustChangePassword Boolean @default(true)
+  createdAt DateTime @default(now())
+}
+
+model Student {
+  id        String     @id @default(cuid())
+  firstName String
+  lastName  String
+  fatherName String
+  age       Int
+  userId    String     @unique
+  user      User       @relation(fields: [userId], references: [id])
+  enrollment Enrollment?
+}
+
+model Teacher {
+  id        String     @id @default(cuid())
+  firstName String
+  lastName  String
+  userId    String     @unique
+  user      User       @relation(fields: [userId], references: [id])
+  classes   Class[]
+}
+
+model Class {
+  id          String       @id @default(cuid())
+  name        String    
+  schedule    String       
+  startDate   DateTime
+  endDate     DateTime
+  teacherId   String?
+  teacher     Teacher?     @relation(fields: [teacherId], references: [id])
+  enrollments Enrollment[]
+}
+
+model Enrollment {
+  id           String   @id @default(cuid())
+  studentId    String   @unique     
+  classId      String
+  student      Student  @relation(fields: [studentId], references: [id])
+  class        Class    @relation(fields: [classId], references: [id])
+  midterm      Float?
+  final        Float?
+  participation Float?
+  total        Float?
+}
+
+enum Role {
+  STUDENT
+  TEACHER
+  ADMIN
+}
