@@ -8,12 +8,21 @@ import { format } from 'date-fns-jalali';
 
 export default function ClassesPage() {
   const [classes, setClasses] = useState<ClassWithTeacher[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     const fetchClasses = async () => {
-      const res = await fetch('/api/classes');
-      const data = await res.json();
-      setClasses(data);
+      try {
+        const res = await fetch('/api/classes');
+        if (!res.ok) throw new Error('مشکلی در دریافت اطلاعات پیش آمد.');
+        const data = await res.json();
+        setClasses(data);
+      } catch (err: any) {
+        setError(err.message || 'خطای ناشناخته');
+      } finally {
+        setLoading(false);
+      }
     };
     fetchClasses();
   }, []);
@@ -27,7 +36,13 @@ export default function ClassesPage() {
         </Link>
       </div>
 
-      {classes.length === 0 ? (
+      {loading ? (
+        <div className="flex justify-center py-10">
+          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+        </div>
+      ) : error ? (
+        <p className="text-center text-destructive">{error}</p>
+      ) : classes.length === 0 ? (
         <p className="text-center text-muted-foreground">هیچ کلاسی ثبت نشده است.</p>
       ) : (
         <ul className="space-y-4">
