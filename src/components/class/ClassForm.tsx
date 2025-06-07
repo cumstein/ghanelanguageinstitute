@@ -6,12 +6,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Calendar } from "@/components/ui/calendar";
 import { useState, useEffect } from "react";
-
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import { formatJalali } from "@/lib/utils";
+import JalaliDatePicker from "./DatePicker";
 
 const classSchema = z.object({
   name: z.string().min(2, "نام کلاس الزامی است"),
@@ -117,36 +115,19 @@ export default function ClassForm({ mode = "create", initialData }: Props) {
 
       <div>
         <Label>تاریخ شروع</Label>
-        <Calendar
-          mode="single"
-          selected={watch("startDate")}
-          onSelect={(date) => setValue("startDate", date!)}
+        <JalaliDatePicker
+          value={watch("startDate")}
+          onChange={(date) => date && setValue("startDate", date.toDate())}
         />
-        {watch("startDate") && (
-          <p className="text-sm text-muted-foreground mt-1">
-            {formatJalali(watch("startDate"))}
-          </p>
-        )}
-        {errors.startDate && (
-          <p className="text-sm text-red-500">{errors.startDate.message}</p>
-        )}
       </div>
 
       <div>
         <Label>تاریخ پایان</Label>
-        <Calendar
-          mode="single"
-          selected={watch("endDate")}
-          onSelect={(date) => setValue("endDate", date!)}
+
+        <JalaliDatePicker
+          value={watch("endDate")}
+          onChange={(date) => date && setValue("endDate", date  .toDate())}
         />
-        {watch("endDate") && (
-          <p className="text-sm text-muted-foreground mt-1">
-            {formatJalali(watch("endDate"))}
-          </p>
-        )}
-        {errors.endDate && (
-          <p className="text-sm text-red-500">{errors.endDate.message}</p>
-        )}
       </div>
 
       <div>

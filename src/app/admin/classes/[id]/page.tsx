@@ -1,15 +1,21 @@
-import { format } from 'date-fns-jalali';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { Button } from '@/components/ui/button';
-import { ClassDetail } from '@/types/class';
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { ClassDetail } from "@/types/class";
+import { formatJalali } from "@/lib/utils";
 
-
-export default async function ClassDetailPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function ClassDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/classes/${id}`, {
-    cache: 'no-store',
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/classes/${id}`,
+    {
+      cache: "no-store",
+    }
+  );
 
   if (!res.ok) return notFound();
 
@@ -27,18 +33,24 @@ export default async function ClassDetailPage({ params }: { params: Promise<{ id
       <div className="grid grid-cols-2 gap-4">
         <div>
           <h2 className="font-semibold text-muted-foreground">تاریخ شروع:</h2>
-          <p>{format(new Date(data.startDate), 'yyyy/MM/dd')}</p>
+          <p>
+            {data.startDate ? formatJalali(data.startDate) : "تاریخ نامشخص"}
+          </p>
         </div>
 
         <div>
           <h2 className="font-semibold text-muted-foreground">تاریخ پایان:</h2>
-          <p>{format(new Date(data.endDate), 'yyyy/MM/dd')}</p>
+          <p>
+            {data.endDate ? formatJalali(data.endDate) : "تاریخ نامشخص"}
+          </p>
         </div>
       </div>
 
       <div>
         <h2 className="font-semibold text-muted-foreground">مدرس:</h2>
-        <p>{data.teacher.firstName} {data.teacher.lastName}</p>
+        <p>
+          {data.teacher.firstName} {data.teacher.lastName}
+        </p>
       </div>
 
       <div className="flex justify-between pt-4">

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ClassWithTeacher } from '@/types/class';
-import { format } from 'date-fns-jalali';
+import { formatJalali } from '@/lib/utils';
 
 export default function ClassesPage() {
   const [classes, setClasses] = useState<ClassWithTeacher[]>([]);
@@ -31,7 +31,7 @@ export default function ClassesPage() {
     <div className="max-w-3xl mx-auto p-4 sm:p-6 space-y-6">
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-bold">لیست کلاس‌ها</h1>
-        <Link href="/classes/new">
+        <Link href="/admin/classes/new">
           <Button>ایجاد کلاس جدید</Button>
         </Link>
       </div>
@@ -55,8 +55,8 @@ export default function ClassesPage() {
                 <h2 className="text-xl font-semibold text-primary">{cls.name}</h2>
                 <p>برنامه: {cls.schedule}</p>
                 <p>معلم: {cls.teacher?.firstName} {cls.teacher?.lastName}</p>
-                <p>از تاریخ: {format(new Date(cls.startDate), 'yyyy/MM/dd')}</p>
-                <p>تا تاریخ: {format(new Date(cls.endDate), 'yyyy/MM/dd')}</p>
+                <p>از تاریخ: {formatJalali(new Date(cls.startDate))}</p>
+                <p>تا تاریخ: {formatJalali(new Date(cls.endDate))}</p>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-2 pt-2">
