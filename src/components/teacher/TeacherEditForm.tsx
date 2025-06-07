@@ -6,8 +6,9 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
+import { TeacherWithClasses } from '@/types/teacher';
 
-export default function EditTeacherForm({ initialData }: { initialData: any }) {
+export default function EditTeacherForm({ initialData }: { initialData: TeacherWithClasses }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [teacher, setTeacher] = useState({
@@ -32,7 +33,7 @@ export default function EditTeacherForm({ initialData }: { initialData: any }) {
 
     if (res.ok) {
       toast.success('اطلاعات با موفقیت ذخیره شد');
-      router.push(`/users/teachers/${initialData.id}`);
+      router.push(`/admin/users/teachers/${initialData.id}`);
     } else {
       toast.error('خطا در ذخیره اطلاعات');
     }

@@ -1,11 +1,33 @@
 'use client';
-import { signIn } from 'next-auth/react';
+
+import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { data: session, status } = useSession();
+
+
+  useEffect(() => {
+    if (status === 'authenticated') {
+      const role = session?.user?.role;
+      switch (role) {
+        case 'admin':
+          router.push('/admin/dashboard');
+          break;
+        case 'teacher':
+          router.push('/teacher/dashboard');
+          break;
+        case 'student':
+          router.push('/student/dashboard');
+          break;
+        default:
+          router.push('/');
+      }
+    }
+  }, [status, session, router]);
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,7 +46,20 @@ export default function LoginPage() {
       if (session?.user?.mustChangePassword) {
         router.push('/change-password');
       } else {
-        router.push('/dashboard');
+        const role = session?.user?.role;
+        switch (role) {
+          case 'admin':
+            router.push('/admin/dashboard');
+            break;
+          case 'teacher':
+            router.push('/teacher/dashboard');
+            break;
+          case 'student':
+            router.push('/student/dashboard');
+            break;
+          default:
+            router.push('/');
+        }
       }
     } else {
       alert('اطلاعات ورود نادرست است.');
@@ -32,6 +67,8 @@ export default function LoginPage() {
 
     setLoading(false);
   };
+
+  if (status === 'loading') return null;
 
   return (
     <div className="max-w-md mx-auto mt-20 bg-white p-6 rounded-xl shadow">

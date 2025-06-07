@@ -44,6 +44,7 @@ export async function GET(request: NextRequest) {
       classes: teacher.classes,
     });
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: "Something went wrong" },
       { status: 500 }

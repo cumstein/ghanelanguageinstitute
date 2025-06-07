@@ -1,3 +1,9 @@
+export type ClassType = {
+  id: string;
+  name: string;
+  schedule: string;
+};
+
 export type CreateClassInput = {
   name: string;
   schedule: string;

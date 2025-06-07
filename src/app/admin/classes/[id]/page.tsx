@@ -42,11 +42,11 @@ export default async function ClassDetailPage({ params }: { params: Promise<{ id
       </div>
 
       <div className="flex justify-between pt-4">
-        <Link href={`/classes/${data.id}/edit`}>
+        <Link href={`/admin/classes/${data.id}/edit`}>
           <Button variant="default">ویرایش کلاس</Button>
         </Link>
 
-        <Link href="/classes">
+        <Link href="/admin/classes">
           <Button variant="secondary">بازگشت به لیست کلاس‌ها</Button>
         </Link>
       </div>

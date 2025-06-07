@@ -74,7 +74,7 @@ export default function ClassForm({ mode = 'create', initialData }: Props) {
     );
 
     if (res.ok) {
-      router.push('/classes');
+      router.push('/admin/classes');
     } else {
       alert(mode === 'edit' ? 'ویرایش کلاس با خطا مواجه شد' : 'ایجاد کلاس با خطا مواجه شد');
     }

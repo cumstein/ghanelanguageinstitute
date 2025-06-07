@@ -5,8 +5,10 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { toast } from 'sonner';
+import { TeacherWithClasses } from '@/types/teacher';
+import { ClassType } from '@/types/class';
 
-export default function TeacherDetailClient({ teacher }: { teacher: any }) {
+export default function TeacherDetailClient({ teacher }: { teacher: TeacherWithClasses }) {
   const router = useRouter();
 
   const handleDelete = async () => {
@@ -40,7 +42,7 @@ export default function TeacherDetailClient({ teacher }: { teacher: any }) {
               <p className="text-sm text-muted-foreground">کلاسی ثبت نشده</p>
             ) : (
               <ul className="list-disc list-inside text-sm space-y-1">
-                {teacher.classes.map((cls: any) => (
+                {teacher.classes.map((cls: ClassType) => (
                   <li key={cls.id}>
                     {cls.name} ({cls.schedule})
                   </li>
@@ -50,11 +52,11 @@ export default function TeacherDetailClient({ teacher }: { teacher: any }) {
           </div>
 
           <div className="flex gap-2 mt-6">
-            <Link href={`/users/teachers/${teacher.id}/edit`}>
+            <Link href={`/admin/users/teachers/${teacher.id}/edit`}>
               <Button variant="secondary">ویرایش</Button>
             </Link>
             <Button variant="destructive" onClick={handleDelete}>حذف</Button>
-            <Button variant="outline" onClick={() => router.push('/users/teachers')}>بازگشت</Button>
+            <Button variant="outline" onClick={() => router.push('/admin/users/teachers')}>بازگشت</Button>
           </div>
         </CardContent>
       </Card>

@@ -35,6 +35,7 @@ export default function TeachersPage() {
         toast.error('خطا در حذف معلم');
       }
     } catch (error) {
+      console.log(error);
       toast.error('مشکلی در ارتباط با سرور پیش آمد');
     }
   };
@@ -56,10 +57,10 @@ export default function TeachersPage() {
                 {teacher.firstName} {teacher.lastName}
               </h2>
               <div className="flex flex-wrap gap-2 mt-4">
-                <Link href={`/users/teachers/${teacher.id}`}>
+                <Link href={`/admin/users/teachers/${teacher.id}`}>
                   <Button variant="outline">مشاهده</Button>
                 </Link>
-                <Link href={`/users/teachers/${teacher.id}/edit`}>
+                <Link href={`/admin/users/teachers/${teacher.id}/edit`}>
                   <Button variant="secondary">ویرایش</Button>
                 </Link>
                 <Button

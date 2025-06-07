@@ -14,7 +14,7 @@ export default function ChangePasswordPage() {
     if (status === 'unauthenticated') {
       router.push('/login');
     }
-  }, [status, router]);
+  }, [status, router, session]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,7 +27,7 @@ export default function ChangePasswordPage() {
     });
 
     if (res.ok) {
-      router.push('/dashboard');
+      router.push('/');
     } else {
       alert('خطا در تغییر رمز. لطفا دوباره امتحان کنید.');
     }

@@ -45,10 +45,10 @@ export default function ClassesPage() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-2 pt-2">
-                <Link href={`/classes/${cls.id}`}>
+                <Link href={`/admin/classes/${cls.id}`}>
                   <Button variant="secondary" className="w-full sm:w-auto">مشاهده کلاس</Button>
                 </Link>
-                <Link href={`/classes/${cls.id}/edit`}>
+                <Link href={`/admin/classes/${cls.id}/edit`}>
                   <Button className="w-full sm:w-auto">ویرایش</Button>
                 </Link>
               </div>

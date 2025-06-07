@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -8,7 +8,7 @@ import {
   Users,
   LayoutGrid,
   School,
-  GraduationCap
+  GraduationCap,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -16,31 +16,31 @@ const cards = [
   {
     title: "ایجاد کاربر",
     icon: <UserPlus className="w-8 h-8" />,
-    href: "/users/new",
+    href: "/admin/users/new",
   },
   {
     title: "ایجاد کلاس",
     icon: <School className="w-8 h-8" />,
-    href: "/classes/new",
+    href: "/admin/classes/new",
   },
   {
     title: "دانش آموزان",
     icon: <Users className="w-8 h-8" />,
-    href: "/users/students",
+    href: "/admin/users/students",
   },
   {
     title: "کلاس ها",
     icon: <LayoutGrid className="w-8 h-8" />,
-    href: "/classes",
+    href: "/admin/classes",
   },
   {
     title: "معلمان",
     icon: <GraduationCap className="w-8 h-8" />,
-    href: "/users/teachers",
+    href: "/admin/users/teachers",
   },
 ];
 
-export default function AdminDashboard() {
+export default function AdminDashboardClient() {
   return (
     <div className="p-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
       {cards.map((card, index) => (
