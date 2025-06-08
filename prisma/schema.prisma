@@ -31,9 +31,9 @@ model Student {
   lastName  String
   fatherName String
   classId    String?
-  class      Class?       @relation(fields: [classId], references: [id])
+  class      Class?       @relation(fields: [classId], references: [id], onDelete: SetNull)
   userId    String     @unique
-  user      User       @relation(fields: [userId], references: [id])
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   enrollment Enrollment?
 }
 

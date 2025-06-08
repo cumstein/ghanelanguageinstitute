@@ -134,7 +134,7 @@ export default function CreateUserPage() {
                   <option value="">انتخاب کلاس</option>
                   {classes.map((cls) => (
                     <option key={cls.id} value={cls.id}>
-                      {cls.name} - معلم: {cls.teacher.firstName} {cls.teacher.lastName}
+                      {cls.name} - معلم: {cls?.teacher?.firstName} {cls?.teacher?.lastName}
                     </option>
                   ))}
                 </select>
