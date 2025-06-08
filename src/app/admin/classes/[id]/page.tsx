@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import StudentsList from "@/components/class/StudentsList";
-import { ClassWithRelations } from "@/types/types";
+import { ClassWithLiteStudents } from "@/types/types";
 import { notFound } from "next/navigation";
 
 export default async function ClassDetailPage({
@@ -19,7 +19,7 @@ export default async function ClassDetailPage({
 
   if (!classData) return notFound();
 
-  const classInfo: ClassWithRelations = {
+  const classInfo: ClassWithLiteStudents = {
     id: classData.id,
     name: classData.name,
     teacher: {

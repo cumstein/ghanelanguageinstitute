@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Student } from "@/types/types";
+import { StudentLite } from "@/types/types";
 
 type Props = {
   classId: string;
-  students: Student[];
+  students: StudentLite[]
 };
 
 export default function StudentsList({ students }: Props) {
