@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 
 export async function POST(req: Request) {
   const body = await req.json();
-  const { firstName, lastName, fatherName, age, role } = body;
+  const { firstName, lastName, fatherName, role, classId } = body;
 
   const username = `user_${nanoid(6)}`;
   const passwordRaw = nanoid(6);
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
                 firstName,
                 lastName,
                 fatherName,
-                age,
+                classId
               },
             },
           }

@@ -10,6 +10,7 @@ export default function ClassesPage() {
   const [classes, setClasses] = useState<ClassWithTeacher[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchClasses = async () => {
@@ -30,6 +31,23 @@ export default function ClassesPage() {
     };
     fetchClasses();
   }, []);
+
+  const handleDelete = async (id: string) => {
+    if (!confirm("آیا مطمئن هستید که می‌خواهید این کلاس را حذف کنید؟")) return;
+
+    setDeletingId(id);
+    try {
+      const res = await fetch(`/api/classes/${id}`, {
+        method: "DELETE",
+      });
+      if (!res.ok) throw new Error("حذف کلاس با خطا مواجه شد.");
+      setClasses((prev) => prev.filter((cls) => cls.id !== id));
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "خطای ناشناخته");
+    } finally {
+      setDeletingId(null);
+    }
+  };
 
   return (
     <div className="max-w-3xl mx-auto p-4 sm:p-6 space-y-6">
@@ -69,7 +87,7 @@ export default function ClassesPage() {
                 <p>تا تاریخ: {formatJalali(new Date(cls.endDate))}</p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-2 pt-2">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-2 pt-2">
                 <Link href={`/admin/classes/${cls.id}`}>
                   <Button variant="secondary" className="w-full sm:w-auto">
                     مشاهده کلاس
@@ -78,6 +96,14 @@ export default function ClassesPage() {
                 <Link href={`/admin/classes/${cls.id}/edit`}>
                   <Button className="w-full sm:w-auto">ویرایش</Button>
                 </Link>
+                <Button
+                  variant="destructive"
+                  className="w-full sm:w-auto"
+                  onClick={() => handleDelete(cls.id)}
+                  disabled={deletingId === cls.id}
+                >
+                  {deletingId === cls.id ? "در حال حذف..." : "حذف"}
+                </Button>
               </div>
             </li>
           ))}

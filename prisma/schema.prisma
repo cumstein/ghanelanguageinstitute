@@ -30,7 +30,8 @@ model Student {
   firstName String
   lastName  String
   fatherName String
-  age       Int
+  classId    String?
+  class      Class?       @relation(fields: [classId], references: [id])
   userId    String     @unique
   user      User       @relation(fields: [userId], references: [id])
   enrollment Enrollment?
@@ -54,6 +55,7 @@ model Class {
   teacherId   String?
   teacher     Teacher?     @relation(fields: [teacherId], references: [id])
   enrollments Enrollment[]
+  students    Student[]
 }
 
 model Enrollment {
