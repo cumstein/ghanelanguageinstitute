@@ -8,16 +8,13 @@ import { ArrowRight } from "lucide-react";
 export default async function TeacherDashboard() {
   const session = await getServerSession(authOptions);
 
-
   if (!session || session.user.role !== "TEACHER") {
     return redirect("/");
   }
 
   const teacher = await prisma.teacher.findUnique({
     where: { userId: session.user.id },
-    include: {
-      classes: true,
-    },
+    include: { classes: true },
   });
 
   return (
@@ -26,21 +23,22 @@ export default async function TeacherDashboard() {
 
       <ul className="space-y-4">
         {teacher?.classes.map((cls) => (
-          <li key={cls.id} className="p-5 border rounded-xl shadow-sm bg-white">
-            <div className="flex justify-between items-center">
-              <div>
-                <h2 className="text-lg font-semibold">{cls.name}</h2>
-                <p className="text-sm text-gray-500">{cls.schedule}</p>
-              </div>
-
-              <Link
-                href={`/teacher/dashboard/class/${cls.id}`}
-                className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition-all"
-              >
-                ورود به کلاس
-                <ArrowRight size={18} />
-              </Link>
+          <li
+            key={cls.id}
+            className="rounded-xl shadow-sm bg-white p-4 flex items-center justify-between border"
+          >
+            <div>
+              <h2 className="text-lg font-semibold">{cls.name}</h2>
+              <p className="text-sm text-muted-foreground">{cls.schedule}</p>
             </div>
+
+            <Link
+              href={`/teacher/dashboard/class/${cls.id}`}
+              className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition"
+            >
+              ورود به کلاس
+              <ArrowRight size={18} />
+            </Link>
           </li>
         ))}
       </ul>
