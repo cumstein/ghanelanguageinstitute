@@ -21,20 +21,20 @@ export default async function TeacherDashboard() {
     <div className="max-w-4xl mx-auto p-6">
       <h1 className="text-2xl font-bold mb-6 text-center">کلاس‌های من</h1>
 
-      <ul className="space-y-4">
+      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {teacher?.classes.map((cls) => (
           <li
             key={cls.id}
-            className="rounded-xl shadow-sm bg-white p-4 flex items-center justify-between border"
+            className="aspect-square rounded-2xl shadow-md bg-white border p-6 flex flex-col justify-between items-center text-center"
           >
             <div>
-              <h2 className="text-lg font-semibold">{cls.name}</h2>
+              <h2 className="text-lg font-semibold mb-1">{cls.name}</h2>
               <p className="text-sm text-muted-foreground">{cls.schedule}</p>
             </div>
 
             <Link
               href={`/teacher/dashboard/class/${cls.id}`}
-              className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition"
+              className="mt-4 flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition"
             >
               ورود به کلاس
               <ArrowRight size={18} />
