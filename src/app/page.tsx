@@ -5,11 +5,25 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>موسسه زبان قانع | آموزش تخصصی زبان در شهریار</title>
+        <title>موسسه زبان قانع | آموزش زبان در شهریار</title>
         <meta
           name="description"
-          content="موسسه زبان‌های خارجی قانع با ارائه دوره‌های تخصصی زبان برای کودکان، نوجوانان و بزرگسالان در شهریار"
+          content="آموزش زبان انگلیسی برای کودکان، نوجوانان و بزرگسالان توسط اساتید حرفه‌ای در موسسه زبان‌های خارجی قانع در شهریار."
         />
+        <meta
+          name="keywords"
+          content="آموزش زبان شهریار, موسسه زبان قانع, زبان انگلیسی کودکان, آیلتس, آموزشگاه زبان شهریار"
+        />
+        <meta
+          property="og:title"
+          content="موسسه زبان قانع | آموزش تخصصی زبان در شهریار"
+        />
+        <meta
+          property="og:description"
+          content="بهترین دوره‌های آموزش زبان انگلیسی برای تمامی سنین در شهریار"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="fa_IR" />
       </Head>
       <main className="min-h-screen bg-gradient-to-tr from-purple-100 via-white to-purple-200 p-4 flex items-center justify-center">
         <Card className="w-full max-w-4xl shadow-2xl border-0 rounded-2xl bg-white/80 backdrop-blur-md">
