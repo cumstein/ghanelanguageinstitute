@@ -26,8 +26,8 @@ export default function Header() {
   return (
     <header className="bg-white shadow-md py-4 sticky top-0 z-50">
       <div className="container flex items-center justify-between">
-        <Link href="/" className="text-xl font-bold text-emerald-600 pr-4">
-          آموزشگاه قانع
+        <Link href="/" className="text-l font-bold text-purple-800 pr-4">
+         موسسه زبان های خارجی قانع
         </Link>
 
         <div className="flex items-center gap-4 min-w-[160px] justify-end">

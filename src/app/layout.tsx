@@ -5,8 +5,8 @@ import { SessionProviderWrapper } from "@/components/providers/SessionProviderWr
 import {Toaster} from "sonner"
 
 export const metadata = {
-  title: "آموزشگاه قانع",
-  description: "سایت رسمی آموزشگاه زبان قانع",
+  title: "موسسه زبان های خارجی قانع",
+  description: "سایت رسمی موسسه زبان های خارجی قانع",
 };
 
 export default function RootLayout({
