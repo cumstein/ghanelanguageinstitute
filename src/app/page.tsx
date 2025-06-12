@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import Head from "next/head";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -29,6 +30,16 @@ export default function Home() {
         <Card className="w-full max-w-4xl shadow-2xl border-0 rounded-2xl bg-white/80 backdrop-blur-md">
           <CardContent className="p-6 md:p-10 space-y-10 text-gray-800">
             <header className="text-center space-y-3">
+              <div className="flex justify-center">
+          <Image
+            src="/logo.png" 
+            alt="Ghane Language Institute Logo"
+            width={100}
+            height={100}
+            className="rounded-full shadow-md"
+            style={{height:"auto"}}
+          />
+        </div>
               <h1 className="text-3xl md:text-5xl font-extrabold text-purple-800">
                 Ghane Language Institute
               </h1>
