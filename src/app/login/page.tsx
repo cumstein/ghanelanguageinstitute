@@ -48,13 +48,13 @@ export default function LoginPage() {
       } else {
         const role = session?.user?.role;
         switch (role) {
-          case 'admin':
+          case 'ADMIN':
             router.push('/admin/dashboard');
             break;
-          case 'teacher':
+          case 'TEACHER':
             router.push('/teacher/dashboard');
             break;
-          case 'student':
+          case 'STUDENT':
             router.push('/student/dashboard');
             break;
           default:
