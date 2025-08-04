@@ -9,7 +9,9 @@
     "lint": "next lint",
     "studio": "npx prisma studio",
     "generate": "npx prisma generate",
-    "migrate": "npx prisma migrate dev"
+    "migrate": "npx prisma migrate dev",
+    "postbuild": "next-sitemap"
+
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.9.1",
@@ -28,6 +30,7 @@
     "lucide-react": "^0.511.0",
     "next": "15.3.3",
     "next-auth": "^4.24.11",
+    "next-sitemap": "^4.2.3",
     "persian-date": "^1.1.0",
     "prisma": "^6.8.2",
     "react": "^19.0.0",

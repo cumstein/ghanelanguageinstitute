@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://ghaneinstitute.ir
+
+# Sitemaps
+Sitemap: https://ghaneinstitute.ir/sitemap.xml
